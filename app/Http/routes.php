@@ -11,7 +11,7 @@
 |
 */
 
-use App\Task;
+use App\Worker;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
@@ -20,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
      */
     Route::get('/', function () {
         return view('tasks', [
-            'tasks' => Task::orderBy('created_at', 'asc')->get()
+            'tasks' => Worker::orderBy('created_at', 'asc')->get()
         ]);
     });
 
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['web']], function () {
                 ->withErrors($validator);
         }
 
-        $task = new Task;
+        $task = new Worker;
         $task->name = $request->name;
         $task->save();
 
@@ -49,8 +49,11 @@ Route::group(['middleware' => ['web']], function () {
      * Delete Task
      */
     Route::delete('/task/{id}', function ($id) {
-        Task::findOrFail($id)->delete();
+        Worker::findOrFail($id)->delete();
 
         return redirect('/');
     });
+    Route::get('/workers_list', 'WorkerController@index');
+    Route::post('/create_worker', 'WorkerController@saveWorker');
+    Route::delete('/worker/{id}', 'WorkerController@deleteWorker');
 });

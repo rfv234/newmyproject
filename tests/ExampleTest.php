@@ -1,6 +1,6 @@
 <?php
 
-use App\Task;
+use App\Worker;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -13,9 +13,9 @@ class ExampleTest extends TestCase
 
     public function test_tasks_are_displayed_on_the_dashboard()
     {
-        factory(Task::class)->create(['name' => 'Task 1']);
-        factory(Task::class)->create(['name' => 'Task 2']);
-        factory(Task::class)->create(['name' => 'Task 3']);
+        factory(Worker::class)->create(['name' => 'Task 1']);
+        factory(Worker::class)->create(['name' => 'Task 2']);
+        factory(Worker::class)->create(['name' => 'Task 3']);
 
         $this->visit('/')
              ->see('Task 1')
