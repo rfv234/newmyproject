@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\Worker::class, function (Faker\Generator $faker) {
+$factory->define(App\Profession::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->title,
     ];
