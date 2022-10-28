@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Worker;
 use Illuminate\Http\Request;
+use App\Age;
 use App\Profession;
 
 class WorkerController extends Controller
@@ -12,7 +13,7 @@ class WorkerController extends Controller
     {
         return view('create_worker', [
             'workers' => Worker::orderBy('created_at', 'asc')->get(),
-            'professions' => Profession::orderBy('created_at', 'asc')->get()
+            'professions' => Age::orderBy('created_at', 'asc')->get()
         ]);
     }
 
@@ -31,6 +32,7 @@ class WorkerController extends Controller
         $newWorker = new Worker;
         $newWorker->name = $request->name;
         $newWorker->profession_id = $request->profession_id;
+        $newWorker->age = $request->age;
         $newWorker->save();
 
         return redirect('/');

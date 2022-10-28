@@ -29,6 +29,11 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <label for="worker-age" class="col-sm-6 control-label">Age</label>
+                            <div class="col-sm-6">
+                                <input type="int" name="name" id="worker-age" class="form-control"
+                                       value="{{ old('worker') }}">
+                            </div>
                         </div>
 
                         <!-- Add Task Button -->
@@ -58,6 +63,9 @@
                             </thead>
                             <tbody>
                             @foreach ($workers as $worker)
+                                @if(worker-age>=50) {
+                                color:red
+                                }
                                 <tr>
                                     <td class="table-text">
                                         <div>{{ $worker->name }}</div>
@@ -65,6 +73,7 @@
                                     <td class="table-text">
                                         <div>{{ $worker->profession->name }}</div>
                                     </td>
+
 
                                     <!-- Task Delete Button -->
                                     <td>

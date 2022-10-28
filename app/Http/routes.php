@@ -12,7 +12,7 @@
 */
 
 use App\Worker;
-use App\Profession;
+use App\Age;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['web']], function () {
