@@ -25,9 +25,22 @@ Route::group(['middleware' => ['web']], function () {
      * Add New WorkerOld
      */
     Route::post('/worker', 'WorkerController@saveWorker');
+    /**
+     * Add New WorkerOld
+     */
+    Route::post('/store', 'WorkerController@store');
 
     /**
      * Delete WorkerOld
      */
     Route::delete('/worker/{id}', 'WorkerController@deleteWorker');
+
+    /**
+     * Edit Worker
+     */
+    Route::get('/edit/{id}', 'WorkerController@editWorker');
+    Route::get('/test', 'WorkerController@test');
+    Route::get('/raspisanie', 'WorkerController@rasp');
+
+
 });

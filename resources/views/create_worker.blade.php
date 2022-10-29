@@ -31,7 +31,7 @@
                             </div>
                             <label for="worker-age" class="col-sm-6 control-label">Age</label>
                             <div class="col-sm-6">
-                                <input type="int" name="name" id="worker-age" class="form-control"
+                                <input type="number" name="age" id="worker-age" class="form-control"
                                        value="{{ old('worker') }}">
                             </div>
                         </div>
@@ -59,19 +59,22 @@
                         <table class="table table-striped worker-table">
                             <thead>
                             <th>Worker</th>
+                            <th>Profession</th>
+                            <th>Age</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tbody>
                             @foreach ($workers as $worker)
-                                @if(worker-age>=50) {
-                                color:red
-                                }
+
                                 <tr>
                                     <td class="table-text">
-                                        <div>{{ $worker->name }}</div>
+                                        <div {{$worker->age>50 ?"style=color:red;":""}}>{{ $worker->name }}</div>
                                     </td>
                                     <td class="table-text">
                                         <div>{{ $worker->profession->name }}</div>
+                                    </td>
+                                    <td class="table-text">
+                                        <div>{{ $worker->age }}</div>
                                     </td>
 
 
@@ -83,6 +86,16 @@
 
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Delete
+                                            </button>
+                                        </form>
+                                    </td>
+
+                                    <!-- Task Edit Button -->
+                                    <td>
+                                        <form action="{{ url('edit/'.$worker->id) }}" method="GET">
+
+                                            <button type="submit" class="btn">
+                                                <i class="fa fa-btn fa-trash"></i>Edit
                                             </button>
                                         </form>
                                     </td>
