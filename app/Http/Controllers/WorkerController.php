@@ -118,11 +118,35 @@ class WorkerController extends Controller
 //        dd($lessons->sortByDesc(function ($lesson, $class){
 //            return $class;
 //        }));
-        $lessons=Lesson::query()
+        $lessonsMonday=Lesson::query()
             ->where('day', 1)
             ->get();
         return view('lessons', [
-            'lessons'=>$lessons
+            'lessons'=>$lessonsMonday
+        ]);
+        $lessonsTuesday=Lesson::query()
+            ->where('day', 2)
+            ->get();
+        return view('lessons', [
+            'lessons'=>$lessonsTuesday
+        ]);
+        $lessonsWednesday=Lesson::query()
+            ->where('day', 3)
+            ->get();
+        return view('lessons', [
+            'lessons'=>$lessonsWednesday
+        ]);
+        $lessonsThursday=Lesson::query()
+            ->where('day', 4)
+            ->get();
+        return view('lessons', [
+            'lessons'=>$lessonsThursday
+        ]);
+        $lessonsFriday=Lesson::query()
+            ->where('day', 5)
+            ->get();
+        return view('lessons', [
+            'lessons'=>$lessonsFriday
         ]);
     }
 }

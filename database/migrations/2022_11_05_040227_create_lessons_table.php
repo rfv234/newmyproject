@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAgeFieldIntoWorkers extends Migration
+class CreateLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,12 @@ class AddAgeFieldIntoWorkers extends Migration
      */
     public function up()
     {
-        Schema::table('workers', function (Blueprint $table) {
-            $table->integer('age')->after('name')->nullable();
+        Schema::create('lessons', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('day');
+            $table->integer('order');
+            $table->timestamps();
         });
     }
 
