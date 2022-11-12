@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/edit/{id}', 'WorkerController@editWorker');
     Route::get('/test', 'WorkerController@test');
     Route::get('/raspisanie', 'WorkerController@rasp');
+    Route::get('/quis', 'QuisController@index');
 
 
 });

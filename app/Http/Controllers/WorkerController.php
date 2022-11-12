@@ -72,19 +72,19 @@ class WorkerController extends Controller
     {
         $cars = collect(
             [
-                'Артем'=>[
-                'name' => 'волга',
-                'year' => 2000
-            ],
-                'Илья'=>[
+                'Артем' => [
+                    'name' => 'волга',
+                    'year' => 2000
+                ],
+                'Илья' => [
                     'name' => 'kia',
                     'year' => 2013
                 ],
-                'Андрей'=>[
+                'Андрей' => [
                     'name' => 'жигуль',
                     'year' => 2010
                 ],
-                'Алексей'=> [
+                'Алексей' => [
                     'name' => 'toyota',
                     'year' => 2015
                 ]]
@@ -93,20 +93,22 @@ class WorkerController extends Controller
             return -$car['year'];
         }));
     }
-    public function rasp() {
-            $lessons=Lesson::query()
-                ->get()
-                ->sortBy('day');
-            $days=[
-                1=>'Понедельник',
-                2=>'Вторник',
-                3=>'Среда',
-                4=>'Четверг',
-                5=>'Пятница'
-            ];
-            return view('lessons', [
-                'lessons'=>$lessons,
-                'days'=>$days
-            ]);
-        }
+
+    public function rasp()
+    {
+        $lessons = Lesson::query()
+            ->get()
+            ->sortBy('day');
+        $days = [
+            1 => 'Понедельник',
+            2 => 'Вторник',
+            3 => 'Среда',
+            4 => 'Четверг',
+            5 => 'Пятница'
+        ];
+        return view('lessons', [
+            'lessons' => $lessons,
+            'days' => $days
+        ]);
+    }
 }
