@@ -94,54 +94,19 @@ class WorkerController extends Controller
         }));
     }
     public function rasp() {
-//        $lessons = collect(
-//            [
-//                '9 класс'=>[
-//                    'рус яз',
-//                    'алгебра',
-//                    'геом',
-//                    'геогр'
-//                ],
-//                '8 класс'=>[
-//                    'литер',
-//                    'алгебра',
-//                    'физ-ра',
-//                    'обж'
-//                ],
-//                '7 класс'=>[
-//                    'общество',
-//                    'алгебра',
-//                    'история'
-//                ]
-//            ]
-//        );
-//        dd($lessons->sortByDesc(function ($lesson, $class){
-//            return $class;
-//        }));
-        $lessons=Lesson::query() {
-                $lessonsMonday=Lesson::query()
-                ->where('day', 1)
+            $lessons=Lesson::query()
                 ->get()
-            ];
-            $lessonsTuesday=Lesson::query()
-                ->where('day', 2)
-                ->get()
-            ];
-            $lessonsWednesday=Lesson::query()
-                ->where('day', 3)
-                ->get()
-            ];
-            $lessonsThursday=Lesson::query()
-                ->where('day', 4)
-                ->get()
-            ];
-            $lessonsFriday=Lesson::query()
-                ->where('day', 5)
-                ->get()
+                ->sortBy('day');
+            $days=[
+                1=>'Понедельник',
+                2=>'Вторник',
+                3=>'Среда',
+                4=>'Четверг',
+                5=>'Пятница'
             ];
             return view('lessons', [
-                'lessons'=>$lessons
+                'lessons'=>$lessons,
+                'days'=>$days
             ]);
         }
-    }
 }
