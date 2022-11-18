@@ -12,9 +12,17 @@ class QuisController extends Controller
     {
         $quises = Quis::query()
             ->get();
-        dd($quises[0]->questions);
+        //dd($quises[0]->questions);
         return view('quises', [
             'quises' => $quises
+        ]);
+    }
+    public function second()
+    {
+        $quis = Quis::query()
+            ->get();
+        return view('quises', [
+            'quis'=>$quis
         ]);
     }
 }
