@@ -42,5 +42,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/test', 'WorkerController@test');
     Route::get('/raspisanie', 'WorkerController@rasp');
     Route::get('/quis', 'QuisController@index');
-    Route::get('/quis', 'QuisController@second');
+    Route::get('/quis/{id}', 'QuisController@showQuis');
+    Route::get('/save', 'QuisController@saveResult');
+    Route::get('/save_quis', 'QuisController@saveQuis');
+    Route::get('/edit_quis/{id}', 'QuisController@editQuis');
 });
