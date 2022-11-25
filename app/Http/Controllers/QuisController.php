@@ -52,6 +52,7 @@ class QuisController extends Controller
             ->first();
         $quis->name = $request->newName;
         $quis->save();
+        return redirect('quis');
     }
     public function editQuis($id)
     {
