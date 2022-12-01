@@ -80,15 +80,17 @@ class QuisController extends Controller
             'quest' => $quest
         ]);
     }
-    public function saveQuest( Request $request)
+
+    public function saveQuest(Request $request)
     {
         $quest = QuisQuestions::query()
             ->where('id', $request->id)
             ->first();
         $quest->text = $request->editQuest;
         $quest->save();
-        return redirect ('quis');
+        return redirect('quis');
     }
+
     public function editAnswers($id)
     {
         $answers = QuisAnswers::query()
@@ -98,6 +100,7 @@ class QuisController extends Controller
             'answers' => $answers
         ]);
     }
+
     public function saveAnswers(Request $request)
     {
         $answers = QuisAnswers::query()
@@ -107,10 +110,12 @@ class QuisController extends Controller
         $answers->save();
         return redirect('quis');
     }
+
     public function createQuis()
     {
         return view('create_quis');
     }
+
     public function saveNewQuis(Request $request)
     {
         $newQuis = new Quis();
@@ -118,6 +123,7 @@ class QuisController extends Controller
         $newQuis->save();
         return redirect('quis');
     }
+
     public function createQuest($quis_id)
     {
         $quis = Quis::query()
@@ -127,12 +133,31 @@ class QuisController extends Controller
             'quis' => $quis
         ]);
     }
+
     public function saveNewQuest(Request $request)
     {
         $newQuest = new QuisQuestions();
         $newQuest->text = $request->createQuest;
         $newQuest->quis_id = $request->quis_id;
         $newQuest->save();
+        return redirect('quis');
+    }
+    public function createAnswer($quis_id)
+    {
+        $quis = Quis::query()
+            ->where('id', $quis_id)
+            ->first();
+        return view('create_answer', [
+            'quis' => $quis
+        ]);
+    }
+
+    public function saveNewAnswer(Request $request)
+    {
+        $newAnswer = new QuisAnswers();
+        $newAnswer->text = $request->createAnswer;
+        $newAnswer->quis_id = $request->quis_id;
+        $newAnswer->save();
         return redirect('quis');
     }
 }

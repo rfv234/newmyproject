@@ -1,28 +1,61 @@
+<style>
+    .edit {
+        position: absolute;
+        left: 350px;
+        width: 200px;
+    }
+
+    .create {
+        background-color: gold;
+        height: 25px;
+        width: 150px;
+    }
+
+    .newThigs{
+        left: 600px;
+        position: absolute;
+    }
+
+    .margin {
+        margin-top: 25px;
+    }
+</style>
 <h1 style="margin-left: 50%">Тест</h1>
 <ul>
     @foreach($quises as $quis)
         <ul>
-            <li>
+            <li class="margin">
                 <a href="/quis/{{$quis->id}}">{{$quis->name}}</a>
                 <a href="/edit_quis/{{$quis->id}}">
-                    <button style="position: absolute; left: 200px">Редактировать квиз</button>
+                    <button class="edit" style="background-color: aqua">
+                        Редактировать квиз
+                    </button>
                 </a>
                 <a href="/create_quest/{{$quis->id}}">
-                    <button>
-                        <h2>Создать вопрос</h2>
+                    <button class="create newThigs">
+                        Создать вопрос
                     </button>
                 </a>
                 <ul>
                     @foreach($quis->questions as $question)
-                        <li>
+                        <li class="margin">
                             {{$question->text}} <a href="/edit_questions/{{$question->id}}">
-                                <button style="position: absolute; left: 200px">Редактировать вопрос</button>
+                                <button class="edit" style="background-color: lightgreen">
+                                    Редактировать вопрос
+                                </button>
+                            </a>
+                            <a href="/create_quest/{{$question->id}}">
+                                <button class="create newThigs">
+                                    Создать ответ
+                                </button>
                             </a>
                             <ul>
                                 @foreach($question->answers as $answer)
-                                    <li>
+                                    <li class="margin">
                                         {{$answer->text}} <a href="/edit_answers/{{$answer->id}}">
-                                            <button style="position: absolute; left: 200px">Редактировать ответ</button>
+                                            <button class="edit" style="background-color: darksalmon">
+                                                Редактировать ответ
+                                            </button>
                                         </a>
                                     </li>
                                 @endforeach
@@ -34,8 +67,8 @@
         </ul>
     @endforeach
     <a href="/create_quis">
-        <button>
-            <h3>Создать новый квиз</h3>
+        <button class="create margin">
+            Создать новый квиз
         </button>
     </a>
 </ul>

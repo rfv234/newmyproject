@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::delete('/worker/{id}', 'WorkerController@deleteWorker');
 
     /**
-     * Edit Worker
+     * Edit Worker and many functions
      */
     Route::get('/edit/{id}', 'WorkerController@editWorker');
     Route::get('/test', 'WorkerController@test');
@@ -54,4 +54,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/save_new_quis', 'QuisController@saveNewQuis');
     Route::get('/create_quest/{quis_id}', 'QuisController@createQuest');
     Route::get('/save_new_quest', 'QuisController@saveNewQuest');
+    Route::get('/create_answer/{quis_id}', 'QuisController@createAnswer');
+    Route::get('/save_new_answer', 'QuisController@saveNewAnswer');
 });
