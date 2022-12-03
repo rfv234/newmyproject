@@ -6,7 +6,7 @@
             <ul>
                 @foreach($question->answers as $answer)
                     <p>
-                        <input type="radio" value="{{$answer->text}}" name="id_ans[{{$question->id}}]">{{$answer->text}}
+                        <input type="radio" value="{{$answer->text}}" required name="id_ans[{{$question->id}}]">{{$answer->text}}
                     </p>
                 @endforeach
             </ul>

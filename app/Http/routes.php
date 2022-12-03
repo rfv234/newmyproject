@@ -56,4 +56,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/save_new_quest', 'QuisController@saveNewQuest');
     Route::get('/create_answer/{quis_id}', 'QuisController@createAnswer');
     Route::get('/save_new_answer', 'QuisController@saveNewAnswer');
+
+    /**
+     * Parser
+     */
+    //Route::get('/scan_sitemap', 'ParserController@scanSitemap');
+    Route::get('/parser_index', 'ParserController@index');
 });

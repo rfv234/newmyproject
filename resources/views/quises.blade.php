@@ -44,7 +44,7 @@
                                     Редактировать вопрос
                                 </button>
                             </a>
-                            <a href="/create_quest/{{$question->id}}">
+                            <a href="/create_answer/{{$question->id}}">
                                 <button class="create newThigs">
                                     Создать ответ
                                 </button>

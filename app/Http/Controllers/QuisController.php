@@ -142,13 +142,13 @@ class QuisController extends Controller
         $newQuest->save();
         return redirect('quis');
     }
-    public function createAnswer($quis_id)
+    public function createAnswer($quis_questions_id)
     {
-        $quis = Quis::query()
-            ->where('id', $quis_id)
+        $questions = QuisQuestions::query()
+            ->where('id', $quis_questions_id)
             ->first();
         return view('create_answer', [
-            'quis' => $quis
+            'questions' => $questions
         ]);
     }
 
@@ -156,7 +156,7 @@ class QuisController extends Controller
     {
         $newAnswer = new QuisAnswers();
         $newAnswer->text = $request->createAnswer;
-        $newAnswer->quis_id = $request->quis_id;
+        $newAnswer->quis_questions_id = $request->questions_id;
         $newAnswer->save();
         return redirect('quis');
     }
