@@ -1,24 +1,26 @@
-<style>
-    #object {
-        margin: 20px;
-        border: solid 2px;
-    }
+<head>
+    <title>Товары Eltex</title>
+    <style>
+        .object {
+            margin: 20px;
+            border: solid 2px;
+            padding: 20px;
+        }
 
-    #name {
-        text-align: center;
-    }
-</style>
+        .name {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
 @foreach($items as $item)
-    <div id="object">
-        <h3 id="name">{{$item->name}}</h3>
-        <span>{{$item->description}}</span><br>
-        <p>{{$item->category}}</p><br>
-        <p>{{$item->seoTitle}}</p><br>
-        <p>{{$item->seoDescription}}</p><br>
-        <p>{{$item->techs}}</p><br>
-        <p>{{$item->documents}}</p>
-        <hr>
-        <p>{{$item->certificates}}</p><br>
-        <p>{{$item->garanties}}</p><br>
+    <div class="object">
+        <h3 class="name">
+            <a href="/product_card/{{$item->id}}">{{$item->name}}</a>
+        </h3>
+        {{strip_tags($item->description)}}<br>
+        <p><h4>Категория товара</h4> {{$item->category}}</p><br>
     </div>
 @endforeach
+</body>
+

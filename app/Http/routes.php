@@ -63,5 +63,6 @@ Route::group(['middleware' => ['web']], function () {
     //Route::get('/scan_sitemap', 'ParserController@scanSitemap');
     Route::get('/parser_index', 'ParserController@index');
     Route::get('/items_list', 'ShopController@itemsList');
+    Route::get('/product_card/{id}', 'ShopController@productCard');
 
 });

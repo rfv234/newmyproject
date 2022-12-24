@@ -15,4 +15,11 @@ class ShopController extends Controller
             'items' => $items
         ]);
     }
+    public function productCard($id)
+    {
+        $item = Eltex::query()->where('id', $id)->first();
+        return view('product_card', [
+            'item' => $item
+        ]);
+    }
 }
