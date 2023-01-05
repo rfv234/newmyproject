@@ -26,6 +26,7 @@
         .accordion__item_show .accordion__header::after {
             transform: rotate(-180deg);
         }
+
         .accordion__item {
             margin-bottom: 0.5rem;
             border-radius: 0.25rem;
@@ -89,43 +90,52 @@
     </style>
 </head>
 <body>
-<div class="object">
-    <h1 class="name">{{$item->name}}</h1>
-    <span class="text-block">{{strip_tags($item->description)}}</span><br>
-    <p><h4>Категория товара</h4> {{$item->category}}</p><br>
-    <p>
-    <h4>Технические характеристики</h4>
-    <span class="text-block">{{strip_tags($item->techs)}}</span>
+    <div class="object">
+        <h1 class="name">{{$item->name}}</h1>
+        <span class="text-block">{{strip_tags($item->description)}}</span><br>
+        <p><h4>Категория товара</h4> {{$item->category}}</p><br>
+        <p>
+        <h4>Технические характеристики</h4>
+        <span class="text-block">{{strip_tags($item->techs)}}</span>
+        </p><br>
+        <p>
+            <div class="accordion" id="documents">
+                <div class="accordion__item accordion__item_show">
+                    <div class="accordion__header">
+                        <h4>Документы</h4>
+                    </div>
+                    <div class="accordion__body">
+        @foreach(json_decode($item->documents) as $document)
+            @foreach($document as $name => $link)
+                <p>
+                    <a href="{{$link}}">{{$name}}</a>
+                </p>
+            @endforeach
+        @endforeach
+                    </div>
+                </div>
+            </div>
     </p><br>
     <p>
-        <div class="accordion" id="documents">
+        <div class="accordion" id="certificates">
             <div class="accordion__item accordion__item_show">
                 <div class="accordion__header">
-                    <h4>Документы</h4>
+                    <h4>Сертификаты</h4>
                 </div>
                 <div class="accordion__body">
-    @foreach(json_decode($item->documents) as $document)
-        @foreach($document as $name => $link)
+    @foreach(json_decode($item->certificates) as $certificate)
+        @foreach($certificate as $name => $link)
             <p>
                 <a href="{{$link}}">{{$name}}</a>
             </p>
+    @endforeach
         @endforeach
-    @endforeach
-</div>
-</div>
-</div>
-</p><br>
-<h4>Сертификаты</h4>
-@foreach(json_decode($item->certificates) as $certificate)
-    @foreach($certificate as $name => $link)
-        <p>
-            <a href="{{$link}}">{{$name}}</a>
-        </p>
-    @endforeach
-@endforeach
-<p><h4>Гарантия</h4> {{$item->garanties}}</p><br>
-
-</div>
+                </div>
+            </div>
+       </div>
+    </p>
+            <p><h4>Гарантия</h4> {{$item->garanties}}</p><br>
+    </div>
 </body>
 <script>
     this._el.addEventListener('click', (e) => {
@@ -149,6 +159,9 @@
         elHeader.parentElement.classList.toggle('accordion__item_show');
     });
     new ItcAccordion('#documents', {
+        alwaysOpen: false
+    });
+    new ItsAccordion('#certificates', {
         alwaysOpen: false
     });
 </script>
