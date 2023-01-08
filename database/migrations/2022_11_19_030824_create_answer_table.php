@@ -12,12 +12,15 @@ class CreateAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('quis_answers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('question_id');
-            $table->string('text');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('quis_answers')) {
+            Schema::create('quis_answers', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('question_id');
+                $table->string('text');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -27,6 +30,6 @@ class CreateAnswerTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('quis_answers');
     }
 }

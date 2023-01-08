@@ -12,12 +12,16 @@ class CreateWorkersTable extends Migration
      */
     public function up()
     {
-        Schema::create('workers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('profession_id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('workers')) {
+            Schema::create('workers', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->integer('profession_id');
+                $table->integer('age');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -27,6 +31,6 @@ class CreateWorkersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('workers');
     }
 }

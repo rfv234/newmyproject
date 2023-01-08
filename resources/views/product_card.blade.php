@@ -138,30 +138,35 @@
     </div>
 </body>
 <script>
-    this._el.addEventListener('click', (e) => {
-        // получим элемент .accordion__header
-        const elHeader = e.target.closest('.accordion__header');
-        // если такой элемент не найден, то прекращаем выполнение функции
-        if (!elHeader) {
-            return;
+    class ItcAccordion {
+        constructor(target, config) {
+            this._el = typeof target === 'string' ? document.querySelector(target) : target;
+            const defaultConfig = {
+                alwaysOpen: true
+            };
+            this._config = Object.assign(defaultConfig, config);
+            this.addEventListener();
         }
-        // если необходимо, чтобы всегда был открыт один элемент
-        if (!this._config.alwaysOpen) {
-            // получим элемент с классом accordion__item_show и сохраним его в переменную elOpenItem
-            const elOpenItem = this._el.querySelector('.accordion__item_show');
-            // если такой элемент есть
-            if (elOpenItem) {
-                // и он не равен текущему, то переключим ему класс accordion__item_show
-                elOpenItem !== elHeader.parentElement ? elOpenItem.classList.toggle('accordion__item_show') : null;
-            }
+        addEventListener() {
+            this._el.addEventListener('click', (e) => {
+                const elHeader = e.target.closest('.accordion__header');
+                if (!elHeader) {
+                    return;
+                }
+                if (!this._config.alwaysOpen) {
+                    const elOpenItem = this._el.querySelector('.accordion__item_show');
+                    if (elOpenItem) {
+                        elOpenItem !== elHeader.parentElement ? elOpenItem.classList.toggle('accordion__item_show') : null;
+                    }
+                }
+                elHeader.parentElement.classList.toggle('accordion__item_show');
+            });
         }
-        // переключим класс accordionitem_show элемента .accordionheader
-        elHeader.parentElement.classList.toggle('accordion__item_show');
-    });
+    }
     new ItcAccordion('#documents', {
         alwaysOpen: false
     });
-    new ItsAccordion('#certificates', {
+    new ItcAccordion('#certificates', {
         alwaysOpen: false
     });
 </script>

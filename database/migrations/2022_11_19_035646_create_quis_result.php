@@ -12,11 +12,14 @@ class CreateQuisResult extends Migration
      */
     public function up()
     {
-        Schema::create('quis_results', function (Blueprint $table) {
-            $table->increments('id');
-            $table->json('result');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('quis_results')) {
+            Schema::create('quis_results', function (Blueprint $table) {
+                $table->increments('id');
+                $table->json('result');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateQuisResult extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('quis_results');
     }
 }

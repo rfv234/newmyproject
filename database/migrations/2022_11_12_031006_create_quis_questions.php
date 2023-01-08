@@ -12,12 +12,15 @@ class CreateQuisQuestions extends Migration
      */
     public function up()
     {
-        Schema::create('quis_questions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('quis_id');
-            $table->string('text');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('quis_questions')) {
+            Schema::create('quis_questions', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('quis_id');
+                $table->string('text');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -27,6 +30,6 @@ class CreateQuisQuestions extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('quis_questions');
     }
 }

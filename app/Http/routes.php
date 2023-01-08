@@ -65,4 +65,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/items_list', 'ShopController@itemsList');
     Route::get('/product_card/{id}', 'ShopController@productCard');
 
+    /**
+     * Seeder
+     */
+    Route::get('/test_seeder', 'SeederController@index');
+
 });

@@ -12,11 +12,14 @@ class CreateProfessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('professions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('professions')) {
+            Schema::create('professions', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateProfessionsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('professions');
     }
 }

@@ -12,11 +12,14 @@ class CreateTableQuises extends Migration
      */
     public function up()
     {
-        Schema::create('quises', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('quises')) {
+            Schema::create('quises', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateTableQuises extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('quises');
     }
 }

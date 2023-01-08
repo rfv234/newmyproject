@@ -12,19 +12,22 @@ class CreateEltexTable extends Migration
      */
     public function up()
     {
-        Schema::create('eltex', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('category');
-            $table->string('seoTitle');
-            $table->string('seoDescription');
-            $table->string('techs');
-            $table->json('documents');
-            $table->json('certificates');
-            $table->string('garanties');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('eltex')) {
+            Schema::create('eltex', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('description');
+                $table->string('category');
+                $table->string('seoTitle');
+                $table->string('seoDescription');
+                $table->string('techs');
+                $table->json('documents');
+                $table->json('certificates');
+                $table->string('garanties');
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -34,6 +37,6 @@ class CreateEltexTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('eltex');
     }
 }
