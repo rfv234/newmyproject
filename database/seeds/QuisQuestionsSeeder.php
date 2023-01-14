@@ -1,10 +1,12 @@
 <?php
 
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class UserSeeder extends Seeder
+
+class QuisQuestionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +15,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('workers')->insert([
-            'name'=>Str::random(10),
-            'profession_id'=>rand(1,4),
-            'age'=>rand(18,100)
+        DB::table('quis_questions')->insert([
+            'quis_id' => Str::rand(1, 20),
+            'text' => Str::random(15)
         ]);
     }
 }
