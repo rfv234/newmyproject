@@ -69,5 +69,9 @@ Route::group(['middleware' => ['web']], function () {
      * Seeder
      */
     Route::get('/test_seeder', 'SeederController@index');
-
+    /**
+     * TestController
+     */
+    Route::get('/test', 'TestController@index');
+    Route::get('/find', 'TestController@findPosts');
 });

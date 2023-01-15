@@ -15,7 +15,7 @@ class QuisAnswersSeeder extends Seeder
     public function run()
     {
         DB::table('quis_answers')->insert([
-            'questions_id' => Str::rand(1, 20),
+            'question_id' => rand(1, 20),
             'text' => Str::random(15)
         ]);
     }

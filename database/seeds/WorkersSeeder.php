@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-
 class WorkersSeeder extends Seeder
 {
     /**
@@ -16,8 +15,8 @@ class WorkersSeeder extends Seeder
     {
         DB::table('workers')->insert([
             'name' => Str::random(10),
-            'profession_id' => Str::rand(1, 4),
-            'age' => Str::rand(18, 100)
+            'profession_id' => rand(1, 4),
+            'age' => rand(18, 100)
         ]);
     }
 }

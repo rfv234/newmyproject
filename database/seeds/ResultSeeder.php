@@ -15,7 +15,7 @@ class ResultSeeder extends Seeder
     public function run()
     {
         DB::table('quis_results')->insert([
-            'result' => Str::rand(1, 2)
+            'result' => rand(1, 2)
         ]);
     }
 }
