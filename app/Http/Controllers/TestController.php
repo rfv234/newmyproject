@@ -29,4 +29,27 @@ class TestController extends Controller
             'posts' => $posts
         ]);
     }
+    public function addCategory()
+    {
+        return view('addCategory');
+    }
+    public function saveCategory(Request $request)
+    {
+        $newCategory = new Category();
+        $newCategory -> name = $request->addCategory;
+        $newCategory->save();
+        return redirect('news');
+    }
+    public function addPosts()
+    {
+        return view('addPosts');
+    }
+    public function savePosts(Request $request)
+    {
+        $newPosts = new Post();
+        $newPosts->title = $request->addPosts;
+        $newPosts->category_id = $request->category_id;
+        $newPosts->save();
+        return redirect('news');
+    }
 }

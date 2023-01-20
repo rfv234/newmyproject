@@ -18,3 +18,9 @@
         </tr>
     @endforeach
 </table>
+<form action="addCategory">
+    <button id="addCategory">Добавить категорию</button>
+</form>
+<form action="addPosts">
+    <button id="addPosts">Добавить новость</button>
+</form>
