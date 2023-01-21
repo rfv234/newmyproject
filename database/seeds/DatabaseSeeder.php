@@ -15,13 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         try {
-            $this->call(WorkersSeeder::class);
-            $this->call(ProfessionSeeder::class);
-            //$this->call(UsersSeeder::class);
-            $this->call(QuisSeeder::class);
-            $this->call(QuisAnswersSeeder::class);
-            $this->call(QuisQuestionsSeeder::class);
-            $this->call(ResultSeeder::class);
+            //$this->call(WorkersSeeder::class);
+            //$this->call(ProfessionSeeder::class);
+            //$this->call(QuisSeeder::class);
+            //$this->call(QuisAnswersSeeder::class);
+           //$this->call(QuisQuestionsSeeder::class);
+            //$this->call(ResultSeeder::class);
+            $this->call(CitySeeder::class);
+            $this->call(CountrySeeder::class);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

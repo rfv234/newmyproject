@@ -78,4 +78,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/saveCategory', 'TestController@saveCategory');
     Route::get('/addPosts', 'TestController@addPosts');
     Route::get('/savePosts', 'TestController@savePosts');
+    Route::get('/findCountries', 'TestController@findCountries');
 });
