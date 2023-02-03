@@ -42,5 +42,30 @@ class CitySeeder extends Seeder
             'population'=>2000000,
             'country_id'=>2
         ]);
+        DB::table('cities')->insert([
+            'name'=>'Париж',
+            'population'=>2100000,
+            'country_id'=>3
+        ]);
+        DB::table('cities')->insert([
+            'name'=>'Томск',
+            'population'=>500000,
+            'country_id'=>1
+        ]);
+        DB::table('cities')->insert([
+            'name'=>'Екатеринбург',
+            'population'=>1500000,
+            'country_id'=>1
+        ]);
+        DB::table('cities')->insert([
+            'name'=>'Марсель',
+            'population'=>800000,
+            'country_id'=>3
+        ]);
+        DB::table('cities')->insert([
+            'name'=>'Лион',
+            'population'=>500000,
+            'country_id'=>3
+        ]);
     }
 }

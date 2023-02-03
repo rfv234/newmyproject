@@ -18,5 +18,8 @@ class CountrySeeder extends Seeder
         DB::table('countries')->insert([
             'name'=>'Германия'
         ]);
+        DB::table('countries')->insert([
+            'name'=>'Франция'
+        ]);
     }
 }
