@@ -11,6 +11,6 @@ class City extends Model
     protected $table = 'cities';
     public function country()
     {
-        return $this->hasOne(Country::class);
+        return $this->belongsTo(Country::class);
     }
 }

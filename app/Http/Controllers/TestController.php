@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Category;
+use App\City;
 use App\Country;
 use Illuminate\Http\Request;
 use App\Post;
@@ -59,13 +60,36 @@ class TestController extends Controller
         $newPosts->save();
         return redirect('/find');
     }
+
     public function findCountries(Request $request)
     {
         $countries = Country::query()->get();
-        $people = isset($request->people) ? $request->people: 3000000;
+        $people = isset($request->people) ? $request->people : 3000000;
         return view('countries', [
             'countries' => $countries,
             'people' => $people
+        ]);
+    }
+
+    public function filterByCountry(Request $request)
+    {
+        $selectedCountry = $request->country;
+        if ($selectedCountry) {
+            $cities = City::query()->where('country_id', $selectedCountry);
+        } else {
+            $cities = City::query();
+        }
+        $sort = $request->sort;
+        $sortType = $request->sortType ? $request->sortType : 'name';
+        if ($sort) {
+            $cities = $cities->orderBy($sortType, $sort)->get();
+        }
+
+        $allCountries = Country::query()->get();
+
+        return view('cities_filter', [
+            'cities' => $cities,
+            'allCountries' => $allCountries
         ]);
     }
 }
