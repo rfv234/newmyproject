@@ -4,9 +4,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Animal;
 use App\Category;
 use App\City;
 use App\Country;
+use App\Kind;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -90,6 +92,15 @@ class TestController extends Controller
         return view('cities_filter', [
             'cities' => $cities,
             'allCountries' => $allCountries
+        ]);
+    }
+    public function findKinds()
+    {
+        $kinds = Kind::query()->get();
+        $animals = Animal::query()->get();
+        return view('kinds', [
+            'kinds' => $kinds,
+            'animals' => $animals
         ]);
     }
 }
