@@ -11,6 +11,7 @@ use App\Country;
 use App\Kind;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Cache;
 
 class TestController extends Controller
 {
@@ -96,11 +97,20 @@ class TestController extends Controller
     }
     public function findKinds()
     {
-        $kinds = Kind::query()->get();
-        $animals = Animal::query()->get();
+       // $kinds = Kind::query()->get();
+        $kinds = Cache::remember('kinds', 60*60, function ()
+        {
+            return Kind::query()->get();
+        });
         return view('kinds', [
             'kinds' => $kinds,
-            'animals' => $animals
+        ]);
+    }
+    public function findDistricts()
+    {
+        $countries = Country::query()->get();
+        return view('districts', [
+            'countries' => $countries
         ]);
     }
 }

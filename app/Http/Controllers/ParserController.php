@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Eltex;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -18,15 +19,20 @@ class ParserController extends Controller
      */
     public function index()
     {
-        $items = $this->scanSitemap();
-        foreach ($items as $item) {
-            $parsedItem = $this->parseItem($item);
-            $this->saveItem($parsedItem);
-        }
+        $parsedItem = Cache::remember('parsedItem', 3600, function ()
+        {
+            $parsedItem = [];
+            $items = $this->scanSitemap();
+            foreach ($items as $item) {
+                $parsedItem[] = $this->parseItem($item);
+                //$this->saveItem($parsedItem);
+            }
+            return $parsedItem;
+        });
     }
 
     /**
-     * Метод сохраняет полученный эдемент в базу данных
+     * Метод сохраняет полученный элемент в базу данных
      * @param $parsedItem
      */
     private function saveItem($parsedItem)
